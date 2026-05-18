@@ -15,12 +15,19 @@ type FetchState =
   | { status: 'error'; message: string }
   | { status: 'ok'; puzzle: Puzzle };
 
+const MIN_LEFT  = 220;
+const MAX_LEFT  = 800;
+const INIT_LEFT = 360;
+
 export default function PuzzlePage() {
   const { id } = useParams<{ id: string }>();
   const [fetchState, setFetchState] = useState<FetchState>({ status: 'loading' });
   const [stage, setStage] = useState<Stage>(0);
+  const [leftWidth, setLeftWidth] = useState(INIT_LEFT);
+  const [dragging, setDragging] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const editorRef = useRef<string>('');
+  const dragStart = useRef<{ x: number; width: number } | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -37,6 +44,34 @@ export default function PuzzlePage() {
   useEffect(() => {
     return () => { if (timerRef.current) clearTimeout(timerRef.current); };
   }, []);
+
+  useEffect(() => {
+    if (!dragging) return;
+
+    const onMove = (e: MouseEvent) => {
+      if (!dragStart.current) return;
+      const delta = e.clientX - dragStart.current.x;
+      setLeftWidth(Math.max(MIN_LEFT, Math.min(MAX_LEFT, dragStart.current.width + delta)));
+    };
+
+    const onUp = () => {
+      setDragging(false);
+      dragStart.current = null;
+    };
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+    return () => {
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+  }, [dragging]);
+
+  const onDividerMouseDown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dragStart.current = { x: e.clientX, width: leftWidth };
+    setDragging(true);
+  };
 
   const run = () => {
     if (stage === 1) return;
@@ -58,7 +93,7 @@ export default function PuzzlePage() {
   const { puzzle } = fetchState;
 
   return (
-    <div className="puzzle-page">
+    <div className="puzzle-page" data-dragging={dragging ? '' : undefined}>
       <header className="puzzle-page__header">
         <Link to="/" className="puzzle-page__back">← Puzzles</Link>
         <span className="puzzle-page__id">#{puzzle.id}</span>
@@ -66,8 +101,13 @@ export default function PuzzlePage() {
         <DiffDot level={puzzle.difficulty} />
         <Chip tone="muted">{puzzle.tag}</Chip>
       </header>
-      <div className="puzzle-page__panels">
+      <div className="puzzle-page__panels" style={{ gridTemplateColumns: `${leftWidth}px 5px 1fr` }}>
         <ProblemPane puzzle={puzzle} stage={stage} />
+        <div
+          className="puzzle-page__divider"
+          onMouseDown={onDividerMouseDown}
+          data-dragging={dragging ? '' : undefined}
+        />
         <EditorPane
           puzzle={puzzle}
           stage={stage}

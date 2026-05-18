@@ -8,6 +8,15 @@
   overflow: hidden;
 }
 
+.puzzle-page[data-dragging] {
+  cursor: col-resize;
+  user-select: none;
+}
+
+.puzzle-page[data-dragging] .editor-pane__editor {
+  pointer-events: none;
+}
+
 .puzzle-page__header {
   display: flex;
   align-items: center;
@@ -53,9 +62,22 @@
 
 .puzzle-page__panels {
   display: grid;
-  grid-template-columns: 360px 1fr;
   height: 100%;
   overflow: hidden;
+}
+
+.puzzle-page__divider {
+  width: 5px;
+  cursor: col-resize;
+  background: var(--line);
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.15s;
+}
+
+.puzzle-page__divider:hover,
+.puzzle-page__divider[data-dragging] {
+  background: var(--accent);
 }
 
 .puzzle-page--loading,

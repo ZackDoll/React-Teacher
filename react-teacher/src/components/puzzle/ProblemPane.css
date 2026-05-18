@@ -1,6 +1,5 @@
 .problem-pane {
   height: 100%;
-  border-right: 1px solid var(--line);
   background: var(--bg-0);
   overflow-y: auto;
   display: flex;
