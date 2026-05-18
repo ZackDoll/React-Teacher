@@ -31,7 +31,7 @@ export default function Logo({ size = 22, withWordmark = true }: LogoProps) {
         />
         <circle cx="26" cy="16" r="3" fill="currentColor" />
       </svg>
-      {withWordmark && <span className="logo__wordmark">Hookbench</span>}
+      {withWordmark && <span className="logo__wordmark">ReactLab</span>}
     </div>
   );
 }
