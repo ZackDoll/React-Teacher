@@ -11,9 +11,10 @@ interface EditorPaneProps {
   stage: Stage;
   onRun: () => void;
   onEditorChange: (value: string) => void;
+  onPushPreview?: () => void;
 }
 
-export default function EditorPane({ puzzle, stage, onRun, onEditorChange }: EditorPaneProps) {
+export default function EditorPane({ puzzle, stage, onRun, onEditorChange, onPushPreview }: EditorPaneProps) {
   const { theme } = useTheme();
   const monacoTheme = theme === 'ink' ? 'vs-dark' : 'vs';
 
@@ -23,15 +24,22 @@ export default function EditorPane({ puzzle, stage, onRun, onEditorChange }: Edi
         <div className="editor-pane__tabs">
           <span className="editor-pane__tab">{puzzle.filename}</span>
         </div>
-        <Button
-          variant="primary"
-          compact
-          mono
-          disabled={stage === 1}
-          onClick={onRun}
-        >
-          {stage === 1 ? '· · ·' : '▷ Run tests'}
-        </Button>
+        <div className="editor-pane__actions">
+          {onPushPreview && (
+            <Button variant="ghost" compact mono onClick={onPushPreview}>
+              ↑ Preview
+            </Button>
+          )}
+          <Button
+            variant="primary"
+            compact
+            mono
+            disabled={stage === 1}
+            onClick={onRun}
+          >
+            {stage === 1 ? '· · ·' : '▷ Run tests'}
+          </Button>
+        </div>
       </div>
       <div className="editor-pane__editor">
         <Editor

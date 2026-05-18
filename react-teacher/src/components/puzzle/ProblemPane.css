@@ -51,7 +51,11 @@
 }
 
 .problem-pane__description p {
-  margin: 0;
+  margin: 0 0 12px;
+}
+
+.problem-pane__description p:last-child {
+  margin-bottom: 0;
 }
 
 /* Sections */

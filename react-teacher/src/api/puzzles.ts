@@ -37,7 +37,7 @@ const PUZZLES: Puzzle[] = [
     difficulty: 'easy',
     tag: 'hooks',
     description:
-      'This Counter component causes an infinite render loop. The useEffect hook calls setCount on every render, which triggers another render. Remove the effect and wire the increment to a click handler instead.',
+      'This Counter component causes an infinite render loop. The useEffect hook calls setCount on every render, which triggers another render — which calls setCount again, which triggers another render, and so on until React bails out with a "Maximum update depth exceeded" error.\n\nThe root issue is that count is listed as a dependency of the effect, but the effect itself modifies count. Every time count changes, the effect fires. Every time the effect fires, count changes. There is no exit condition.\n\nThe fix is straightforward: remove the useEffect entirely. State updates in response to user interaction belong in event handlers, not effects. Wire setCount to an onClick handler on the button instead. Use the functional updater form (c => c + 1) so the increment does not close over a stale value of count — this is especially important if the handler could ever be called multiple times in quick succession.\n\nAs a rule of thumb: if you find yourself writing useEffect to update state based on other state, that is almost always a sign that the logic belongs in an event handler or can be computed as derived state during render.',
     filename: 'Counter.jsx',
     broken: `function Counter() {
   const [count, setCount] = useState(0);

@@ -28,7 +28,9 @@ export default function ProblemPane({ puzzle, stage }: ProblemPaneProps) {
         </header>
 
         <div className="problem-pane__description">
-          <p>{puzzle.description}</p>
+          {puzzle.description.split('\n\n').map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
         </div>
 
         <section className="problem-pane__section">

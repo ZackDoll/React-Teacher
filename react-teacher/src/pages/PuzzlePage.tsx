@@ -141,10 +141,8 @@ export default function PuzzlePage() {
           puzzle={puzzle}
           stage={stage}
           onRun={run}
-          onEditorChange={(value) => {
-            editorRef.current = value;
-            setPreviewCode(value);
-          }}
+          onEditorChange={(value) => { editorRef.current = value; }}
+          onPushPreview={puzzle.preview !== undefined ? () => setPreviewCode(editorRef.current) : undefined}
         />
         {puzzle.preview !== undefined && (
           <>

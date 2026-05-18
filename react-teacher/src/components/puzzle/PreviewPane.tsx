@@ -61,18 +61,15 @@ export default function PreviewPane({ code, componentName }: PreviewPaneProps) {
 
   useEffect(() => {
     setErrorMsg(null);
-    const timerId = setTimeout(() => {
-      void transpileJSX(code).then((result) => {
-        if ('error' in result) {
-          setErrorMsg(result.error);
-          return;
-        }
-        if (iframeRef.current) {
-          iframeRef.current.srcdoc = buildSrcdoc(result.code, componentName);
-        }
-      });
-    }, 500);
-    return () => clearTimeout(timerId);
+    void transpileJSX(code).then((result) => {
+      if ('error' in result) {
+        setErrorMsg(result.error);
+        return;
+      }
+      if (iframeRef.current) {
+        iframeRef.current.srcdoc = buildSrcdoc(result.code, componentName);
+      }
+    });
   }, [code, componentName]);
 
   useEffect(() => {
