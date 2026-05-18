@@ -1,4 +1,5 @@
 import './EditorPane.css';
+import { useState, useRef, useEffect } from 'react';
 import Editor from '@monaco-editor/react';
 import type { Puzzle } from '../../api/puzzles.ts';
 import { useTheme } from '../../theme/useTheme.ts';
@@ -14,9 +15,24 @@ interface EditorPaneProps {
   onPushPreview?: () => void;
 }
 
+const PUSH_COOLDOWN_MS = 5000;
+
 export default function EditorPane({ puzzle, stage, onRun, onEditorChange, onPushPreview }: EditorPaneProps) {
   const { theme } = useTheme();
   const monacoTheme = theme === 'ink' ? 'vs-dark' : 'vs';
+  const [pushCooldown, setPushCooldown] = useState(false);
+  const cooldownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => { if (cooldownTimer.current) clearTimeout(cooldownTimer.current); };
+  }, []);
+
+  const handlePush = () => {
+    if (!onPushPreview || pushCooldown) return;
+    onPushPreview();
+    setPushCooldown(true);
+    cooldownTimer.current = setTimeout(() => setPushCooldown(false), PUSH_COOLDOWN_MS);
+  };
 
   return (
     <div className="editor-pane">
@@ -26,7 +42,7 @@ export default function EditorPane({ puzzle, stage, onRun, onEditorChange, onPus
         </div>
         <div className="editor-pane__actions">
           {onPushPreview && (
-            <Button variant="ghost" compact mono onClick={onPushPreview}>
+            <Button variant="ghost" compact mono disabled={pushCooldown} onClick={handlePush}>
               ↑ Preview
             </Button>
           )}

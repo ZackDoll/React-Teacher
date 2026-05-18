@@ -74,6 +74,7 @@ export default function PreviewPane({ code, componentName }: PreviewPaneProps) {
 
   useEffect(() => {
     const handler = (event: MessageEvent<unknown>) => {
+      if (event.source !== iframeRef.current?.contentWindow) return;
       if (isIframeError(event.data)) {
         setErrorMsg(event.data.message);
       }
