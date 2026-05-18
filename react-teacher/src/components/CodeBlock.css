@@ -1,0 +1,12 @@
+.codeblock {
+  font-family: var(--font-mono);
+}
+
+.codeblock__token--kw  { color: var(--accent); }
+.codeblock__token--fn  { color: var(--text); }
+.codeblock__token--str { color: var(--warn); }
+.codeblock__token--num { color: var(--warn); }
+.codeblock__token--cmt { color: var(--text-mute); }
+.codeblock__token--jsx { color: var(--accent-2); }
+.codeblock__token--op  { color: var(--text-mute); }
+.codeblock__token--txt { color: var(--text-dim); }

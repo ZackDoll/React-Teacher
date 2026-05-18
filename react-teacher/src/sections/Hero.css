@@ -1,0 +1,233 @@
+/* Shared */
+.hero__accent {
+  color: var(--accent);
+}
+
+.hero__btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: var(--space-7);
+}
+
+.hero__btn-row--center {
+  justify-content: center;
+}
+
+/* Split */
+.hero-split__container {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+
+.hero-split__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.hero-split__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-split__h1 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 62px;
+  line-height: 1.02;
+  letter-spacing: -1.8px;
+  color: var(--text);
+  margin: 22px 0 18px;
+  text-wrap: balance;
+}
+
+.hero-split__sub {
+  margin: 0;
+  font-size: 17.5px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  max-width: 460px;
+  text-wrap: pretty;
+}
+
+.hero-split__stats {
+  display: flex;
+  gap: var(--space-7);
+  margin-top: 32px;
+}
+
+.hero-split__stat-num {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--text);
+}
+
+.hero-split__stat-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-mute);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+/* Stacked */
+.hero-stacked__container {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+.hero-stacked__inner {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-stacked__h1 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 1.02;
+  letter-spacing: -2.2px;
+  color: var(--text);
+  margin: 22px 0 18px;
+  text-wrap: balance;
+}
+
+.hero-stacked__sub {
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  max-width: 560px;
+}
+
+.hero-stacked__widget {
+  margin: 56px auto 0;
+  max-width: 900px;
+}
+
+/* Command */
+.hero-command__container {
+  padding-top: 80px;
+  padding-bottom: 40px;
+}
+
+.hero-command__inner {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.hero-command__chip-row {
+  text-align: center;
+}
+
+.hero-command__h1 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 1.04;
+  letter-spacing: -1.6px;
+  color: var(--text);
+  margin: 22px 0 18px;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.hero-command__sub {
+  margin: 0 auto 36px;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  max-width: 560px;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.hero-command__palette {
+  border-radius: var(--radius-lg);
+  background: var(--bg-1);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+
+.hero-command__search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.hero-command__arrow {
+  color: var(--accent);
+  font-size: 14px;
+}
+
+.hero-command__query {
+  font-size: 14px;
+  color: var(--text);
+}
+
+.hero-command__caret {
+  width: 8px;
+  height: 16px;
+  background: var(--accent);
+  margin-left: 1px;
+  animation: hb-blink 1s steps(2) infinite;
+}
+
+.hero-command__kbd {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-mute);
+}
+
+.hero-command__row {
+  display: grid;
+  grid-template-columns: 60px 1fr 90px 90px;
+  align-items: center;
+  padding: 14px 18px;
+  gap: 14px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13px;
+}
+
+.hero-command__row[data-selected] {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
+.hero-command__row-id    { color: var(--text-mute); }
+.hero-command__row-title { color: var(--text); font-family: var(--font-sans); font-weight: 500; }
+.hero-command__row-tag   { color: var(--text-dim); }
+.hero-command__row-level {
+  color: var(--text-dim);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: end;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .hero-split__grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-split__h1 {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-split__h1 { font-size: 36px; }
+  .hero-stacked__h1 { font-size: 46px; }
+  .hero-command__h1 { font-size: 38px; }
+  .hero-split__stats { flex-wrap: wrap; gap: 16px; }
+}

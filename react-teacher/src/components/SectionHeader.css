@@ -1,0 +1,43 @@
+.section-header {
+  max-width: 720px;
+}
+
+.section-header[data-align="center"] {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.section-header__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1.6px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.section-header__title {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 38px;
+  letter-spacing: -0.8px;
+  line-height: 1.08;
+  color: var(--text);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.section-header__sub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-dim);
+  margin: 14px 0 0;
+  max-width: 580px;
+  text-wrap: pretty;
+}
+
+.section-header[data-align="center"] .section-header__sub {
+  margin-left: auto;
+  margin-right: auto;
+}
