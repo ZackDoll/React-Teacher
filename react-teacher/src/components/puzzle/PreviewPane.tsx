@@ -34,6 +34,35 @@ function buildSrcdoc(transpiledCode: string, componentName: string): string {
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"><\/script>
   <script>
     const { useState, useEffect, useRef, useMemo, useCallback, useReducer, useContext, createContext } = React;
+
+    // Render-loop guard: disconnect + report if DOM mutates > 50 times in one second
+    let _rlCount = 0, _rlStart = Date.now(), _rlSent = false;
+    const _rlObs = new MutationObserver(function() {
+      if (_rlSent) return;
+      const now = Date.now();
+      if (now - _rlStart > 1000) { _rlCount = 0; _rlStart = now; }
+      if (++_rlCount > 50) {
+        _rlSent = true;
+        _rlObs.disconnect();
+        document.getElementById('root').innerHTML = '';
+        parent.postMessage({ type: 'iframe-error', message: 'Infinite render loop detected: component re-rendered more than 50 times per second.' }, '*');
+      }
+    });
+    _rlObs.observe(document.getElementById('root'), { childList: true, subtree: true, characterData: true });
+
+    // React logs "Maximum update depth exceeded" to console.error before throwing —
+    // intercept it here because React 18 does not always propagate it to window.onerror
+    const _rlOrigErr = console.error;
+    console.error = function() {
+      const msg = typeof arguments[0] === 'string' ? arguments[0] : '';
+      if (!_rlSent && (msg.includes('Maximum update depth') || msg.includes('Too many re-renders'))) {
+        _rlSent = true;
+        _rlObs.disconnect();
+        parent.postMessage({ type: 'iframe-error', message: msg }, '*');
+      }
+      return _rlOrigErr.apply(this, arguments);
+    };
+
     try {
       ${safeCode}
       ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(${componentName}));
