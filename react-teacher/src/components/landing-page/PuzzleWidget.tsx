@@ -207,7 +207,7 @@ export default function PuzzleWidget({ compact = false }: PuzzleWidgetProps) {
       {/* Footer */}
       <div className="puzzle-widget__footer">
         <span className="puzzle-widget__hint" data-stage={stage}>
-          {stage === 0 && 'hint: dependency array · setter callback'}
+          {stage === 0 && 'hint: move to an event handler · setter callback'}
           {stage === 1 && 'vitest · running 3 specs…'}
           {stage === 2 && 'solved in 47s · top 18% today'}
         </span>
