@@ -1,4 +1,5 @@
 import './Tracks.css';
+import { Link } from 'react-router-dom';
 import Container from '../../Container.tsx';
 import SectionHeader from '../../SectionHeader.tsx';
 import DiffDot from '../../DiffDot.tsx';
@@ -18,7 +19,7 @@ export default function Tracks() {
       <Container>
         <div className="tracks__header">
           <SectionHeader eyebrow="Tracks" title="Pick what you want to get sharper at." />
-          <a href="#" className="tracks__browse-link">Browse all 240 puzzles →</a>
+          <Link to="/puzzles" className="tracks__browse-link">Browse all 240 puzzles →</Link>
         </div>
         <div className="tracks__grid">
           {TRACKS.map(t => (

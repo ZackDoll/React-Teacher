@@ -1,10 +1,16 @@
 import './Nav.css';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo.tsx';
 import Button from '../Button.tsx';
 import { useTheme } from '../../theme/useTheme.ts';
 
-const NAV_LINKS = ['Puzzles', 'Tracks', 'Leaderboard', 'Pricing'];
+const NAV_LINKS: { label: string; to: string }[] = [
+  { label: 'Puzzles',     to: '/puzzles'     },
+  { label: 'Tracks',      to: '/tracks'      },
+  { label: 'Leaderboard', to: '/leaderboard' },
+  { label: 'Pricing',     to: '/pricing'     },
+];
 
 export default function Nav() {
   const [progress, setProgress] = useState(0);
@@ -26,14 +32,14 @@ export default function Nav() {
       <div className="nav__inner">
         <Logo />
         <nav className="nav__links">
-          {NAV_LINKS.map((label, i) => (
-            <a key={label} href="#" className={`nav__link${i === 0 ? ' nav__link--active' : ''}`}>
+          {NAV_LINKS.map(({ label, to }, i) => (
+            <Link key={label} to={to} className={`nav__link${i === 0 ? ' nav__link--active' : ''}`}>
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
         <div className="nav__actions">
-          <a href="#" className="nav__signin">Sign in</a>
+          <Link to="/signin" className="nav__signin">Sign in</Link>
           <Button compact>Start solving</Button>
           <button
             className="nav__theme-toggle"

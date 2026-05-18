@@ -2,6 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
+  text-decoration: none;
 }
 
 .logo__mark {

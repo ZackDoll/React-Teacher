@@ -1,4 +1,5 @@
 import './Logo.css';
+import { Link } from 'react-router-dom';
 
 interface LogoProps {
   size?: number;
@@ -7,7 +8,7 @@ interface LogoProps {
 
 export default function Logo({ size = 22, withWordmark = true }: LogoProps) {
   return (
-    <div className="logo">
+    <Link to="/" className="logo">
       <svg
         width={size}
         height={size}
@@ -32,6 +33,6 @@ export default function Logo({ size = 22, withWordmark = true }: LogoProps) {
         <circle cx="26" cy="16" r="3" fill="currentColor" />
       </svg>
       {withWordmark && <span className="logo__wordmark">ReactLab</span>}
-    </div>
+    </Link>
   );
 }
