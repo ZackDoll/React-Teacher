@@ -1,35 +1,43 @@
 .logo-strip {
   display: flex;
   align-items: center;
-  gap: 36px;
-  justify-content: space-between;
-  padding: 40px 0 14px;
+  justify-content: center;
+  gap: 0;
+  padding: 32px 0;
   border-top: 1px solid var(--line-soft);
   margin-top: 80px;
 }
 
-.logo-strip__label {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 1.4px;
-  color: var(--text-mute);
-  text-transform: uppercase;
-  white-space: nowrap;
+.logo-strip__feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: -0.1px;
 }
 
-.logo-strip__company {
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 17px;
-  color: var(--text-mute);
-  opacity: 0.85;
-  letter-spacing: -0.3px;
+.logo-strip__sep {
+  color: var(--line);
+  font-size: 18px;
+  margin-right: 20px;
+  line-height: 1;
 }
 
 @media (max-width: 700px) {
   .logo-strip {
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 12px;
     justify-content: flex-start;
+  }
+
+  .logo-strip__sep {
+    display: none;
+  }
+
+  .logo-strip__feature {
+    gap: 0;
   }
 }

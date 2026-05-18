@@ -24,11 +24,11 @@ function HeroSplit() {
         <div className="hero-split__left">
           <Chip tone="accent">● Today's puzzle live · 02:14:41 left</Chip>
           <h1 className="hero-split__h1">
-            React puzzles<br />that teach you what<br />
+            React puzzles that teach you what{' '}
             <span className="hero__accent">senior code feels like.</span>
           </h1>
           <p className="hero-split__sub">
-            Tiny bugs, broken hooks, gnarly re-renders — fix them in your browser, get instant feedback, level up faster than reading docs.
+            Tiny bugs, broken hooks, gnarly re-renders, fix them in your browser, get instant feedback, level up faster than reading docs.
           </p>
           <div className="hero__btn-row">
             <Button>Solve today's puzzle</Button>
@@ -59,7 +59,7 @@ function HeroStacked() {
           <span className="hero__accent">senior code</span> feels like.
         </h1>
         <p className="hero-stacked__sub">
-          Tiny bugs, broken hooks, gnarly re-renders — fix them in your browser, get instant feedback, level up faster than reading docs.
+          Tiny bugs, broken hooks, gnarly re-renders, fix them in your browser, get instant feedback, level up faster than reading docs.
         </p>
         <div className="hero__btn-row hero__btn-row--center">
           <Button>Solve today's puzzle</Button>

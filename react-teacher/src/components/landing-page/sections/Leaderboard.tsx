@@ -16,7 +16,7 @@ function LeaderboardCard() {
     <div className="lb-card">
       <div className="lb-card__header">
         <span className="lb-card__period">This week · global</span>
-        <span className="lb-card__live">● live</span>
+        <span className="lb-card__live">● Live</span>
       </div>
       {ROWS.map(r => (
         <div key={r.who} className="lb-card__row" data-you={r.you ? '' : undefined}>
@@ -45,7 +45,7 @@ export default function Leaderboard() {
             <SectionHeader
               eyebrow="Leaderboard"
               title="Climb against 18,400 React devs."
-              sub="Daily, weekly and all-time boards. Streaks count. So does elegant code — peer-rated solutions earn a multiplier."
+              sub="Daily, weekly, and all-time boards. Streaks count. Elegant code does too: peer-rated solutions earn a score multiplier."
             />
             <div className="lb-section__btns">
               <Button>See your rank →</Button>

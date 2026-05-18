@@ -1,15 +1,23 @@
 import './LogoStrip.css';
 import Container from '../../Container.tsx';
 
-const COMPANIES = ['vercel', 'linear', 'figma', 'stripe', 'notion', 'retool'];
+const FEATURES = [
+  'Daily puzzles',
+  'Browser sandbox',
+  'Instant feedback',
+  'Peer solutions',
+  'Streak tracking',
+];
 
 export default function LogoStrip() {
   return (
     <Container>
       <div className="logo-strip">
-        <span className="logo-strip__label">devs from</span>
-        {COMPANIES.map(co => (
-          <span key={co} className="logo-strip__company">{co}</span>
+        {FEATURES.map((feature, i) => (
+          <span key={feature} className="logo-strip__feature">
+            {i !== 0 && <span className="logo-strip__sep">·</span>}
+            {feature}
+          </span>
         ))}
       </div>
     </Container>

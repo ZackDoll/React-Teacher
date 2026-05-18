@@ -6,7 +6,7 @@ const STEPS = [
   {
     n: '01',
     t: 'Pick a puzzle',
-    d: 'Hooks, state, perf, suspense, server components — daily drop, plus 240+ in the archive.',
+    d: 'Hooks, state, perf, suspense, and server components. New puzzles drop daily, with 240+ already in the archive.',
   },
   {
     n: '02',
