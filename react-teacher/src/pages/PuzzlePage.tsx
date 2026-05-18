@@ -16,20 +16,20 @@ type FetchState =
   | { status: 'error'; message: string }
   | { status: 'ok'; puzzle: Puzzle };
 
-const MIN_LEFT   = 220;
-const MAX_LEFT   = 800;
-const INIT_LEFT  = 360;
-const MIN_RIGHT  = 200;
-const MAX_RIGHT  = 700;
-const INIT_RIGHT = 320;
+const LEFT_MIN_VW  = 0.15;
+const LEFT_MAX_VW  = 0.45;
+const LEFT_INIT_VW = 0.25;
+const RIGHT_MIN_VW  = 0.15;
+const RIGHT_MAX_VW  = 0.40;
+const RIGHT_INIT_VW = 0.22;
 
 export default function PuzzlePage() {
   const { id } = useParams<{ id: string }>();
   const [fetchState, setFetchState] = useState<FetchState>({ status: 'loading' });
   const [stage, setStage] = useState<Stage>(0);
-  const [leftWidth, setLeftWidth]         = useState(INIT_LEFT);
+  const [leftWidth, setLeftWidth]         = useState(() => Math.round(window.innerWidth * LEFT_INIT_VW));
   const [dragging, setDragging]           = useState(false);
-  const [rightWidth, setRightWidth]       = useState(INIT_RIGHT);
+  const [rightWidth, setRightWidth]       = useState(() => Math.round(window.innerWidth * RIGHT_INIT_VW));
   const [rightDragging, setRightDragging] = useState(false);
   const [previewCode, setPreviewCode]     = useState('');
   const timerRef    = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -58,8 +58,9 @@ export default function PuzzlePage() {
     if (!dragging) return;
     const onMove = (e: MouseEvent) => {
       if (!dragStart.current) return;
+      const vw = window.innerWidth;
       const delta = e.clientX - dragStart.current.x;
-      setLeftWidth(Math.max(MIN_LEFT, Math.min(MAX_LEFT, dragStart.current.width + delta)));
+      setLeftWidth(Math.max(vw * LEFT_MIN_VW, Math.min(vw * LEFT_MAX_VW, dragStart.current.width + delta)));
     };
     const onUp = () => { setDragging(false); dragStart.current = null; };
     document.addEventListener('mousemove', onMove);
@@ -74,8 +75,9 @@ export default function PuzzlePage() {
     if (!rightDragging) return;
     const onMove = (e: MouseEvent) => {
       if (!rightDragStart.current) return;
+      const vw = window.innerWidth;
       const delta = rightDragStart.current.x - e.clientX;
-      setRightWidth(Math.max(MIN_RIGHT, Math.min(MAX_RIGHT, rightDragStart.current.width + delta)));
+      setRightWidth(Math.max(vw * RIGHT_MIN_VW, Math.min(vw * RIGHT_MAX_VW, rightDragStart.current.width + delta)));
     };
     const onUp = () => { setRightDragging(false); rightDragStart.current = null; };
     document.addEventListener('mousemove', onMove);
