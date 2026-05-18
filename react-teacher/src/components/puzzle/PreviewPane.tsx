@@ -13,6 +13,7 @@ function buildSrcdoc(transpiledCode: string, componentName: string): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://unpkg.com; style-src 'unsafe-inline'; img-src data:; connect-src 'none';">
   <style>* { box-sizing: border-box; } body { margin: 0; padding: 16px; font-family: system-ui, sans-serif; }</style>
 </head>
 <body>
