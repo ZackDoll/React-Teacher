@@ -66,12 +66,38 @@ const PUZZLES: Puzzle[] = [
   },
 ];
 
+const DIFFICULTIES = new Set<string>(['easy', 'medium', 'hard']);
+const COMPONENT_NAME_RE = /^[A-Z][A-Za-z0-9]*$/;
+const FILENAME_RE = /^[\w.-]+$/;
+const ID_RE = /^[\w-]+$/;
+
+function isValidPuzzle(p: unknown): p is Puzzle {
+  if (typeof p !== 'object' || p === null) return false;
+  const x = p as Record<string, unknown>;
+  if (typeof x['id'] !== 'string' || !ID_RE.test(x['id'])) return false;
+  if (typeof x['title'] !== 'string' || x['title'].length === 0) return false;
+  if (typeof x['difficulty'] !== 'string' || !DIFFICULTIES.has(x['difficulty'])) return false;
+  if (typeof x['tag'] !== 'string' || x['tag'].length === 0) return false;
+  if (typeof x['description'] !== 'string') return false;
+  if (typeof x['filename'] !== 'string' || !FILENAME_RE.test(x['filename'])) return false;
+  if (typeof x['broken'] !== 'string' || typeof x['fixed'] !== 'string') return false;
+  if (typeof x['consoleOutput'] !== 'string') return false;
+  if (!Array.isArray(x['tests'])) return false;
+  if (x['preview'] !== undefined) {
+    const prev = x['preview'] as Record<string, unknown>;
+    if (typeof prev['componentName'] !== 'string' || !COMPONENT_NAME_RE.test(prev['componentName'])) return false;
+  }
+  return true;
+}
+
 export async function getPuzzle(id: string): Promise<Puzzle | null> {
-  return Promise.resolve(PUZZLES.find(p => p.id === id) ?? null);
+  const puzzle = PUZZLES.find(p => p.id === id);
+  if (!puzzle || !isValidPuzzle(puzzle)) return null;
+  return Promise.resolve(puzzle);
 }
 
 export async function listPuzzles(): Promise<PuzzleListItem[]> {
   return Promise.resolve(
-    PUZZLES.map(({ id, title, difficulty, tag }) => ({ id, title, difficulty, tag }))
+    PUZZLES.filter(isValidPuzzle).map(({ id, title, difficulty, tag }) => ({ id, title, difficulty, tag }))
   );
 }

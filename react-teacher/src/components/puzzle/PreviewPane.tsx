@@ -7,7 +7,10 @@ interface PreviewPaneProps {
   componentName: string;
 }
 
+const COMPONENT_NAME_RE = /^[A-Z][A-Za-z0-9]*$/;
+
 function buildSrcdoc(transpiledCode: string, componentName: string): string {
+  const safeCode = transpiledCode.replace(/<\/script>/gi, '<\\/script>');
   return `<!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +35,7 @@ function buildSrcdoc(transpiledCode: string, componentName: string): string {
   <script>
     const { useState, useEffect, useRef, useMemo, useCallback, useReducer, useContext, createContext } = React;
     try {
-      ${transpiledCode}
+      ${safeCode}
       ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(${componentName}));
     } catch (e) {
       parent.postMessage({ type: 'iframe-error', message: e.message }, '*');
@@ -62,6 +65,12 @@ export default function PreviewPane({ code, componentName }: PreviewPaneProps) {
 
   useEffect(() => {
     setErrorMsg(null);
+
+    if (!COMPONENT_NAME_RE.test(componentName)) {
+      setErrorMsg(`Invalid component name: "${componentName}"`);
+      return;
+    }
+
     void transpileJSX(code).then((result) => {
       if ('error' in result) {
         setErrorMsg(result.error);
