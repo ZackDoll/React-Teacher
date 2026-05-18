@@ -5,6 +5,10 @@ export interface PuzzleTest {
   detail: string;
 }
 
+export interface PreviewConfig {
+  componentName: string;
+}
+
 export interface Puzzle {
   id: string;
   title: string;
@@ -16,6 +20,7 @@ export interface Puzzle {
   fixed: string;
   tests: PuzzleTest[];
   consoleOutput: string;
+  preview?: PreviewConfig;
 }
 
 export interface PuzzleListItem {
@@ -57,6 +62,7 @@ const PUZZLES: Puzzle[] = [
     ],
     consoleOutput:
       'Warning: Maximum update depth exceeded. Check the useEffect in Counter — it triggers a state update on every render.',
+    preview: { componentName: 'Counter' },
   },
 ];
 

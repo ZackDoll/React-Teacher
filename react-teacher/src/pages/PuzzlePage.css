@@ -13,7 +13,8 @@
   user-select: none;
 }
 
-.puzzle-page[data-dragging] .editor-pane__editor {
+.puzzle-page[data-dragging] .editor-pane__editor,
+.puzzle-page[data-dragging] .preview-pane__iframe {
   pointer-events: none;
 }
 
