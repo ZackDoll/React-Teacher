@@ -31,7 +31,7 @@ function HeroSplit() {
             Tiny bugs, broken hooks, gnarly re-renders, fix them in your browser, get instant feedback, level up faster than reading docs.
           </p>
           <div className="hero__btn-row">
-            <Button>Solve today's puzzle</Button>
+            <Button to="/puzzles/014">Solve today's puzzle</Button>
             <Button variant="ghost">Browse the archive</Button>
           </div>
           <div className="hero-split__stats">

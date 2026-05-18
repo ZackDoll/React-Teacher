@@ -1,5 +1,6 @@
 import './Button.css';
 import { type ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ButtonProps {
   children: ReactNode;
@@ -7,6 +8,7 @@ interface ButtonProps {
   compact?: boolean;
   mono?: boolean;
   disabled?: boolean;
+  to?: string;
   onClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -19,22 +21,35 @@ export default function Button({
   compact = false,
   mono = false,
   disabled,
+  to,
   onClick,
   onMouseEnter,
   onMouseLeave,
   style,
 }: ButtonProps) {
+  const props = {
+    className: 'btn',
+    'data-variant': variant,
+    'data-compact': compact ? '' : undefined,
+    'data-mono': mono ? '' : undefined,
+    style,
+  };
+
+  if (to) {
+    return (
+      <Link to={to} {...props}>
+        {children}
+      </Link>
+    );
+  }
+
   return (
     <button
-      className="btn"
-      data-variant={variant}
-      data-compact={compact ? '' : undefined}
-      data-mono={mono ? '' : undefined}
+      {...props}
       disabled={disabled}
       onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      style={style}
     >
       {children}
     </button>
