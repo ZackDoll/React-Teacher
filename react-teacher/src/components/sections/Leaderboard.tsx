@@ -1,7 +1,7 @@
 import './Leaderboard.css';
-import Container from '../components/Container.tsx';
-import SectionHeader from '../components/SectionHeader.tsx';
-import Button from '../components/Button.tsx';
+import Container from '../Container.tsx';
+import SectionHeader from '../SectionHeader.tsx';
+import Button from '../Button.tsx';
 
 const ROWS = [
   { rank: 1, who: 'm.cho',    solved: 218, streak: 47, xp: 14820, top: true  },

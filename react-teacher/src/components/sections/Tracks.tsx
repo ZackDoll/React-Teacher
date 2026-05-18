@@ -1,7 +1,7 @@
 import './Tracks.css';
-import Container from '../components/Container.tsx';
-import SectionHeader from '../components/SectionHeader.tsx';
-import DiffDot from '../components/DiffDot.tsx';
+import Container from '../Container.tsx';
+import SectionHeader from '../SectionHeader.tsx';
+import DiffDot from '../DiffDot.tsx';
 
 const TRACKS = [
   { name: 'Hooks & lifecycles', glyph: 'h',   count: 42, blurb: 'useEffect deps, custom hooks, stale closures, refs vs state.' },

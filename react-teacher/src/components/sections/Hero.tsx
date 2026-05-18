@@ -1,9 +1,9 @@
 import './Hero.css';
-import Chip from '../components/Chip.tsx';
-import Button from '../components/Button.tsx';
-import Container from '../components/Container.tsx';
-import DiffDot from '../components/DiffDot.tsx';
-import PuzzleWidget from '../components/PuzzleWidget.tsx';
+import Chip from '../Chip.tsx';
+import Button from '../Button.tsx';
+import Container from '../Container.tsx';
+import DiffDot from '../DiffDot.tsx';
+import PuzzleWidget from '../PuzzleWidget.tsx';
 
 export type HeroVariant = 'split' | 'stacked' | 'command';
 
@@ -74,10 +74,10 @@ function HeroStacked() {
 }
 
 const COMMAND_ROWS = [
-  { id: '#014', title: 'Fix the infinite render loop',           level: 'easy'   as const, tag: 'hooks'   },
-  { id: '#087', title: 'Why does this list not re-render?',      level: 'medium' as const, tag: 'state'   },
-  { id: '#132', title: 'Make this list virtualize without flicker', level: 'hard' as const, tag: 'perf'  },
-  { id: '#201', title: 'Suspense boundary races a router',       level: 'medium' as const, tag: 'suspense'},
+  { id: '#014', title: 'Fix the infinite render loop',              level: 'easy'   as const, tag: 'hooks'   },
+  { id: '#087', title: 'Why does this list not re-render?',         level: 'medium' as const, tag: 'state'   },
+  { id: '#132', title: 'Make this list virtualize without flicker', level: 'hard'   as const, tag: 'perf'    },
+  { id: '#201', title: 'Suspense boundary races a router',          level: 'medium' as const, tag: 'suspense' },
 ];
 
 function HeroCommand() {

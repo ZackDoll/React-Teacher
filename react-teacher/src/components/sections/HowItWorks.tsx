@@ -1,6 +1,6 @@
 import './HowItWorks.css';
-import Container from '../components/Container.tsx';
-import SectionHeader from '../components/SectionHeader.tsx';
+import Container from '../Container.tsx';
+import SectionHeader from '../SectionHeader.tsx';
 
 const STEPS = [
   {
