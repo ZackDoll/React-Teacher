@@ -1,8 +1,8 @@
 import './Nav.css';
 import { useState, useEffect } from 'react';
-import Logo from './Logo.tsx';
-import Button from './Button.tsx';
-import { useTheme } from '../theme/useTheme.ts';
+import Logo from '../Logo.tsx';
+import Button from '../Button.tsx';
+import { useTheme } from '../../theme/useTheme.ts';
 
 const NAV_LINKS = ['Puzzles', 'Tracks', 'Leaderboard', 'Pricing'];
 

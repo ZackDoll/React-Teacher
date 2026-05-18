@@ -1,6 +1,6 @@
 import './Footer.css';
-import Logo from './Logo.tsx';
-import Container from './Container.tsx';
+import Logo from '../Logo.tsx';
+import Container from '../Container.tsx';
 
 const FOOTER_LINKS = ['Puzzles', 'Pricing', 'Changelog', 'Discord', 'Privacy'];
 

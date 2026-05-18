@@ -1,7 +1,7 @@
 import './Leaderboard.css';
-import Container from '../Container.tsx';
-import SectionHeader from '../SectionHeader.tsx';
-import Button from '../Button.tsx';
+import Container from '../../Container.tsx';
+import SectionHeader from '../../SectionHeader.tsx';
+import Button from '../../Button.tsx';
 
 const ROWS = [
   { rank: 1, who: 'm.cho',    solved: 218, streak: 47, xp: 14820, top: true  },
@@ -19,11 +19,7 @@ function LeaderboardCard() {
         <span className="lb-card__live">● live</span>
       </div>
       {ROWS.map(r => (
-        <div
-          key={r.who}
-          className="lb-card__row"
-          data-you={r.you ? '' : undefined}
-        >
+        <div key={r.who} className="lb-card__row" data-you={r.you ? '' : undefined}>
           <span className="lb-card__rank" data-top={r.top ? '' : undefined}>
             {String(r.rank).padStart(2, '0')}
           </span>

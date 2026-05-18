@@ -1,5 +1,5 @@
 import './LogoStrip.css';
-import Container from '../Container.tsx';
+import Container from '../../Container.tsx';
 
 const COMPANIES = ['vercel', 'linear', 'figma', 'stripe', 'notion', 'retool'];
 

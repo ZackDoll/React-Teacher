@@ -1,6 +1,6 @@
 import './PuzzleWidget.css';
 import { useState, useEffect, useRef } from 'react';
-import DiffDot from './DiffDot.tsx';
+import DiffDot from '../DiffDot.tsx';
 import CodeBlock from './CodeBlock.tsx';
 
 type Stage = 0 | 1 | 2;
@@ -56,7 +56,6 @@ export default function PuzzleWidget({ compact = false }: PuzzleWidgetProps) {
 
   return (
     <div className="puzzle-widget">
-      {/* Header bar */}
       <div className="puzzle-widget__header">
         <div className="puzzle-widget__dots">
           <span className="puzzle-widget__dot puzzle-widget__dot--fail" />
@@ -72,13 +71,11 @@ export default function PuzzleWidget({ compact = false }: PuzzleWidgetProps) {
         </div>
       </div>
 
-      {/* Prompt bar */}
       <div className="puzzle-widget__prompt">
         <div className="puzzle-widget__prompt-id">Puzzle #014</div>
         <div className="puzzle-widget__prompt-text">Fix the infinite render loop.</div>
       </div>
 
-      {/* Body */}
       <div className="puzzle-widget__body" data-compact={compact ? '' : undefined}>
         <pre className="puzzle-widget__code">
           <CodeBlock source={code} />
@@ -88,10 +85,7 @@ export default function PuzzleWidget({ compact = false }: PuzzleWidgetProps) {
           <div className="puzzle-widget__tests">
             <div className="puzzle-widget__tests-header">
               <span className="puzzle-widget__tests-label">Tests</span>
-              <span
-                className="puzzle-widget__tests-count"
-                data-stage={stage}
-              >
+              <span className="puzzle-widget__tests-count" data-stage={stage}>
                 {stage === 2 ? '3 / 3 passing' : stage === 1 ? 'running…' : '0 / 3'}
               </span>
             </div>
@@ -123,7 +117,6 @@ export default function PuzzleWidget({ compact = false }: PuzzleWidgetProps) {
         )}
       </div>
 
-      {/* Footer bar */}
       <div className="puzzle-widget__footer">
         <span className="puzzle-widget__hint" data-stage={stage}>
           {stage === 0 && 'hint: dependency array · setter callback'}

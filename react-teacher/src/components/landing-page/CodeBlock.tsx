@@ -19,7 +19,7 @@ function tokenize(src: string): Token[] {
   let m: RegExpExecArray | null;
   while ((m = RE.exec(src)) !== null) {
     const [, cmt, str, num, jsx, ident, op, ws] = m;
-    if (cmt)   out.push({ k: 'cmt', v: cmt });
+    if (cmt)        out.push({ k: 'cmt', v: cmt });
     else if (str)   out.push({ k: 'str', v: str });
     else if (num)   out.push({ k: 'num', v: num });
     else if (jsx)   out.push({ k: 'jsx', v: jsx });

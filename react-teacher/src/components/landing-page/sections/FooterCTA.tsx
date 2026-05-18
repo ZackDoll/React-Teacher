@@ -1,6 +1,6 @@
 import './FooterCTA.css';
-import Container from '../Container.tsx';
-import Button from '../Button.tsx';
+import Container from '../../Container.tsx';
+import Button from '../../Button.tsx';
 
 export default function FooterCTA() {
   return (
